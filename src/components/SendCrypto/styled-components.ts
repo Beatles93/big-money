@@ -1,43 +1,49 @@
 import styled from "styled-components";
 
-export const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ModalContent = styled.div`
-  background-color: #ff6f61;
+export const ModalWrapper = styled.div`
+  background: #ff6f61;
   padding: 20px;
   border-radius: 8px;
-  width: 300px;
-  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 100px; /* Делаем отступ сверху */
 `;
 
 export const Input = styled.input`
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
 `;
 
 export const Select = styled.select`
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
 `;
 
 export const Button = styled.button`
-  padding: 10px 20px;
-  margin: 10px 0;
-  background-color: #8bc34a;
+  width: 100%;
+  padding: 10px;
+  background: #8bc34a;
   border: none;
   border-radius: 4px;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
-  color: #fff;
+  &:hover {
+    background: #7cb342;
+  }
+`;
+
+export const Balance = styled.div`
+  margin-bottom: 10px;
+  font-size: 16px;
 `;
