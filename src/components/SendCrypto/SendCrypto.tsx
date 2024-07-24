@@ -7,7 +7,7 @@ import {
   Select,
   Button,
   Balance,
-} from "./styled-components"; // Импортируем стили
+} from "./styled-components";
 
 const SendCrypto = () => {
   const [recipient, setRecipient] = useState("");
