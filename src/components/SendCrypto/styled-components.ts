@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const ModalWrapper = styled.div`
   background: #000000;
-  padding: 90px;
+  padding: 20px 90px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 400px;
   max-width: 90%;
-  margin-bottom: 300px;
+  margin-top: 20px;
   color: #ffffff;
 `;
 

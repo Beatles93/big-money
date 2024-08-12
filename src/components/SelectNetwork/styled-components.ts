@@ -22,7 +22,7 @@ export const SelectNetworkContainer = styled.div`
 `;
 
 export const SelectedNetwork = styled.div`
-  padding: 12px;
+  padding: 12px 12px;
   background-color: #ffffff;
   border: 1px solid #ffcc00;
   border-radius: 12px;
@@ -58,8 +58,8 @@ export const NetworkItem = styled.div`
 `;
 
 export const NetworkLogo = styled.img`
-  width: 60px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
   margin-right: 10px;
 `;
 
