@@ -6,42 +6,52 @@ import {
   NetworkList,
   NetworkItem,
 } from "./styled-components";
-
-// Массив сетей для переключения
-const networks = [
-  { name: "Ethereum Mainnet", chainId: 1, logo: "/public/images/ethereum.png"},
-  {
-    name: "Binance Smart Chain Testnet",
-    chainId: 97,
-    logo: "/public/images/bnb.png",
-  },
-];
+import {
+  defaultNetwork,
+  supportedNetworks,
+} from "../../constants/supported-networks";
+// import { useSwitchActiveWalletChain } from "thirdweb/react";
+import { useSwitchChain, useActiveChain } from "@thirdweb-dev/react";
+import { Chain } from "@thirdweb-dev/chains";
 
 const SelectNetwork = () => {
-  const [selectedNetwork, setSelectedNetwork] = useState(networks[0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-
-  const handleNetworkChange = async (network: React.SetStateAction<{ name: string; chainId: number; logo: string; }>) => {
-    setSelectedNetwork(network);
+  const switchChain = useSwitchChain();
+  const activeChain = useActiveChain();
+  const selectedNetwork = activeChain || defaultNetwork;
+  const handleNetworkChange = async (network: Chain) => {
     setDropdownOpen(false);
-    await switchNetwork(network.chainId);
+    await switchChain(network.chainId);
+  };
+  const resolveIpfsUrl = (url?: string) => {
+    if (!url) return null;
+    if (url.startsWith("ipfs://")) {
+      return url.replace("ipfs://", "https://ipfs.io/ipfs/");
+    }
+    return url;
   };
 
   return (
     <SelectNetworkContainer>
       <SelectedNetwork onClick={() => setDropdownOpen(!dropdownOpen)}>
-        <NetworkLogo src={selectedNetwork.logo} alt={selectedNetwork.name} />
+        <NetworkLogo
+          src={resolveIpfsUrl(selectedNetwork.icon?.url)}
+          alt={selectedNetwork.name}
+        />
         {selectedNetwork.name}
       </SelectedNetwork>
       {dropdownOpen && (
         <NetworkList>
-          {networks.map((network) => (
+          {supportedNetworks.map((network) => (
             <NetworkItem
               key={network.chainId}
               onClick={() => handleNetworkChange(network)}
             >
-              <NetworkLogo src={network.logo} alt={network.name} />
+              <NetworkLogo
+                src={resolveIpfsUrl(network.icon.url)}
+                alt={network.name}
+              />
               {network.name}
             </NetworkItem>
           ))}
@@ -52,7 +62,3 @@ const SelectNetwork = () => {
 };
 
 export default SelectNetwork;
-function switchNetwork(chainId: any) {
-  throw new Error("Function not implemented.");
-}
-
